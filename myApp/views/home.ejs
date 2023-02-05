@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome our website</h1>
+    <% if(user){ %>
+        <p><%=user.name%>  <%=user.surname%></p><br>
+        <a href="/profile">profile</a>
+        <br><a href="/logout">logout</a><br>
+        <a href="/userProducts">View my products</a>
+        <br>
+        <a href="/createproduct">Create a new product</a> 
+    <% }else{ %> 
+    <a href="/login">Login</a>
+    <br>
+    <br>    
+    <a href="/signup">Signup</a>
+    <% } %> 
+    <br>
+
+</body>
+</html>

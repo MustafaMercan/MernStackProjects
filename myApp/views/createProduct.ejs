@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create product page</h1>
+    <form>
+        <label for="product title">product title:</label>
+        <input type="text" name="productTitle">
+        <div class="title error"></div>
+        <br>
+        <br>
+
+        <label for="product description">product description:</label>
+        <input type="text" name="productDescription">
+        <div class="description error"></div>
+        <br>
+        <br>
+
+        <label for="product image">product image:</label>
+        <input type="text" name="productImage">
+        <div class="image error"></div>
+        <br>
+        <br>   
+
+        <button type="submit">Create New Product</button>
+        <br>
+    </form>
+
+    
+</body>
+<script>
+    const form = document.querySelector('form');
+
+    const titleError = document.querySelector('.title.error');
+    const descriptionError = document.querySelector('.description.error');
+    const imageError = document.querySelector('.image.error');
+
+    form.addEventListener('submit',async(event) =>{
+        event.preventDefault();
+
+        const productTitle = form.productTitle.value;
+        const productDescription = form.productDescription.value;
+        const productImage = form.productImage.value;
+
+        imageError.textContent = '';
+        descriptionError.textContent='';
+        titleError.textContent='';
+        try {
+            const res = await fetch('/createProduct',{
+                method:'POST',
+                body:JSON.stringify({productTitle,productDescription,productImage}),
+                headers:{'Content-Type':'application/json'}
+            });
+            const data = await res.json();
+            if(data.errors)
+            {
+                titleError.textContent = data.errors.productTitle;
+                descriptionError.textContent=data.errors.productDescription;
+                imageError.textContent=data.errors.productImage;
+
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        console.log(productTitle,productDescription,productImage);
+    })
+
+</script>
+</html>
