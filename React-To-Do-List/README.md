@@ -27,3 +27,4 @@ npx tailwindcss init
 4->"Afterwards, the only thing you need to do is to run the project by using the command 'npm run start'."
 
 
+![project_images](./images/gorsel_adi.png)
