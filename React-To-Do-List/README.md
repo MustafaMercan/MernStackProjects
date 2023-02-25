@@ -27,10 +27,10 @@ npx tailwindcss init
 4->"Afterwards, the only thing you need to do is to run the project by using the command 'npm run start'."
 
 
-![project_images](./images/Untitled-1.png)
+![project_images](./images/Untitled-1.png){width=50%; height=25%;}
 
-![project_images](./images/Untitled-1.png)
+![project_images](./images/Untitled-2.png){width=50%; height=25%;}
 
-![project_images](./images/Untitled-1.png)
+![project_images](./images/Untitled-3.png){width=50%; height=25%;}
 
-![project_images](./images/Untitled-1.png)
+![project_images](./images/Untitled-4.png){width=50%; height=25%;}
