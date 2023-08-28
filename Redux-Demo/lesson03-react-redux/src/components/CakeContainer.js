@@ -13,14 +13,12 @@ const CakeContainer = (props) => {
     </div>
   )
 }
-
 const mapStateProps = (state) => {
     console.log('state',state)
     return{
         numOfCakes: state.cake.numOfCakes
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return{
         buyCake: () => dispatch(buyCake())
