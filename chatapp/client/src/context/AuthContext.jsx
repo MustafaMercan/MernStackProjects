@@ -16,11 +16,22 @@ export const AuthContextProvider = ({ children }) => {
         password:"",
     })
 
+    const[loginError,setLoginError] = useState(null);
+    const[isLoginLoading,setIsLoginLoading] = useState(false);
+    const [loginInfo, setLoginInfo] = useState({
+        email:"",
+        password:"",
+    })
+
     const updateRegisterInfo = useCallback((info) => {
         setRegisterInfo(info);
     }, [])
 
+    const updateLoginInfo = useCallback((info) => {
+        setLoginInfo(info);
+    }, [])
     console.log("User",user);
+    console.log("loginInfo",loginInfo);
 
     useEffect(() => {
         const user = localStorage.getItem('User')
@@ -48,6 +59,21 @@ export const AuthContextProvider = ({ children }) => {
         setUser(null);
     },[])
 
+    const loginUser = useCallback(async (e) => {
+        e.preventDefault();
+        setIsLoginLoading(true);
+        setLoginError(null)
+
+        const response = await postRequest(`${baseUrl}/users/login`,JSON.stringify(loginInfo))
+
+        setIsLoginLoading(false);
+
+        if(response.error) return setLoginError(response);
+
+        localStorage.setItem("User", JSON.stringify(response));
+        setUser(response);
+    }, [loginInfo])
+
     return (
         <AuthContext.Provider value={{
             user,
@@ -57,6 +83,11 @@ export const AuthContextProvider = ({ children }) => {
             registerError,
             isRegisterLoading,
             logoutUser,
+            loginUser,
+            loginError,
+            loginInfo,
+            updateLoginInfo,
+            isLoginLoading
         }}>
             {children}
         </AuthContext.Provider>
