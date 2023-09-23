@@ -30,8 +30,7 @@ export const AuthContextProvider = ({ children }) => {
     const updateLoginInfo = useCallback((info) => {
         setLoginInfo(info);
     }, [])
-    console.log("User",user);
-    console.log("loginInfo",loginInfo);
+
 
     useEffect(() => {
         const user = localStorage.getItem('User')

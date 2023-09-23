@@ -16,11 +16,12 @@ export const useFetchRecipientUser = (chat, user) => {
             if(response.error){
                 return setError(response);
             }
+            //console.log("31");
             setRecipientUser(response);
         }
 
         getUser();
-    },[])
+    },[recipientId])
 
     return {recipientUser}
 }
