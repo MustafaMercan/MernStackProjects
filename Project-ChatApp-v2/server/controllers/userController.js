@@ -56,7 +56,7 @@ const loginController = async(req,res) => {
 
 }
 
-const getUserController = async(req,res) => {
+const getUsersController = async(req,res) => {
     try{
         const users = await userModel.find({},{password:0}); //except id
         res.status(200).json({users:users})
@@ -66,8 +66,21 @@ const getUserController = async(req,res) => {
     }
 }
 
+const getUserController = async(req,res) => {
+
+    const userID = req.params.id;
+    //console.log(userID);
+    const user = await userModel.findOne({
+        _id:userID
+    })
+    //console.log(user);
+    res.status(200).json(user);
+
+}
+
 module.exports = {
     registerController,
     loginController,
-    getUsers:getUserController
+    getUsers:getUsersController,
+    getUser:getUserController
 }
