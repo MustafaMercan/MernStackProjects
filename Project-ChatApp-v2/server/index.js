@@ -8,6 +8,8 @@ const {dbConnect} = require('./db')
 dbConnect();
 dotenv.config();
 
+let users = []
+
 
 const app = express();
 app.use(express.json())
@@ -26,6 +28,15 @@ const io = new Server(server,{
         credentials: true,
     }
 });
+
+
+io.on('connect',(socket) => {
+    console.log(`${socket.id} is connected the socket`)
+
+    socket.on('disconnect',() => {
+        console.log(`${socket.id} disconnected from the socket`);
+    })
+})
 
 const PORT = process.env.PORT || 3000;
 

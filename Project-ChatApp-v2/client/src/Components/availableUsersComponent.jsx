@@ -16,9 +16,6 @@ const AvailableUsersComponent = () => {
   const dispatch = useDispatch();
   //console.log('user -> ',user)
 
-
-
-
   useEffect(() => {
     const getUsers = async() => {
 
