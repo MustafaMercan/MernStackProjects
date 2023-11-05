@@ -1,14 +1,29 @@
 import React from 'react'
+import { ReactMediaRecorder } from 'react-media-recorder'
+import { NavLink } from 'react-router-dom'
 
-const ScreenComponent = ({ closeModal }) => {
+const ScreenComponent = ({ closeModal ,setConfigVideo}) => {
+
+    const handleInput = (event) => {
+        //console.log(event.target.name)
+        //console.log(event.target.checked);
+
+        setConfigVideo(prev => ({
+            ...prev, // Mevcut user state'inin kopyasını al
+            [event.target.name]: event.target.checked // Yalnızca email değerini güncelle
+          }));
+
+    }
     return (
         <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 bg-white p-8 rounded-lg shadow-lg z-50 w-1/2 h-1/2">
             <div className="modal-content">
                 <span className="close fixed top-0 right-0 p-4" onClick={closeModal} >
                     &times;
                 </span>
-                <div className="text-gray-700 body-font">
-                    <div className="container px-5 py-24 mx-auto">
+
+                <div className="text-gray-700 body-font flex flex-col items-center bg-red-50">
+
+                    <div className="container px-5 py-4 mx-auto">
                         <div className="flex flex-wrap -m-4 text-center">
                             <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                                 <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
@@ -19,7 +34,7 @@ const ScreenComponent = ({ closeModal }) => {
                                     <h2 className="title-font font-medium text-3xl text-gray-900">2.7K</h2>
                                     <p className="leading-relaxed">Screen</p>
                                 </div>
-                                <input type='checkbox' className='top-0 w-4 h-4' name="screen"/>
+                                <input onChange = {handleInput} type='checkbox' className='top-0 w-4 h-4' name="screen" />
                             </div>
                             <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                                 <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
@@ -31,7 +46,7 @@ const ScreenComponent = ({ closeModal }) => {
                                     <h2 className="title-font font-medium text-3xl text-gray-900">1.3K</h2>
                                     <p className="leading-relaxed">Webcam</p>
                                 </div>
-                                <input type='checkbox' className='top-0 w-4 h-4' name="webcam"/>
+                                <input onChange={handleInput} type='checkbox' className='top-0 w-4 h-4' name="video" />
 
                             </div>
                             <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
@@ -43,7 +58,7 @@ const ScreenComponent = ({ closeModal }) => {
                                     <h2 className="title-font font-medium text-3xl text-gray-900">74</h2>
                                     <p className="leading-relaxed">System Sound</p>
                                 </div>
-                                <input type='checkbox' className='top-0 w-4 h-4' name="sound"/>
+                                <input onChange={handleInput} type='checkbox' className='top-0 w-4 h-4' name="audio" />
 
                             </div>
                             <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
@@ -54,13 +69,29 @@ const ScreenComponent = ({ closeModal }) => {
                                     <h2 className="title-font font-medium text-3xl text-gray-900">46</h2>
                                     <p className="leading-relaxed">Microphone</p>
                                 </div>
-                                <input type='checkbox' className='top-0 w-4 h-4' name="microphone"/>
+                                <input onChange={handleInput} type='checkbox' className='top-0 w-4 h-4' name="audio" />
 
                             </div>
+
+
                         </div>
                     </div>
+
+                    <div>
+                        <NavLink
+                            className="my-4 bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-4 px-10 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                            to='screen-capture'
+                        >
+                            Start Recording
+                        </NavLink>
+
+                    </div>
+
                 </div>
+
             </div>
+
+
         </div>
     )
 }
